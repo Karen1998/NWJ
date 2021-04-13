@@ -1,0 +1,33 @@
+@import "../../styles/Main/colors.modules";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 100%;
+  background-color: $primary;
+  padding-top: 127px;
+
+  @media (min-width: 1024px) {
+    width: 160px;
+  }
+}
+
+.iconRoot {
+  cursor: pointer;
+  color: map-get($yellow, 900);
+  margin-bottom: 72px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 1024px) {
+    border-left: 3px solid transparent;
+  }
+}
+
+.active {
+  color: map-get($purple, 600);
+  border-color: map-get($purple, 600);
+}

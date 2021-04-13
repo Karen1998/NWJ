@@ -1,0 +1,74 @@
+.root {
+  padding: 20px 42px 41px 20px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  height: 247px;
+
+  @media (min-width: 1024px) {
+    height: 544px;
+    padding: 42px 96px 64px 42px;
+  }
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardInfoTitleBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cardInfoTitle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.cardInfoLessons,
+.cardInfoDuration {
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+}
+
+.cardInfoDuration {
+  @media (min-width: 1024px) {
+    font-size: 24px;
+  }
+}
+
+.playIcon {
+  align-self: flex-end;
+  width: 58px;
+  height: 54px;
+  border-radius: 16px;
+  background-color: rgba(#fff, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}

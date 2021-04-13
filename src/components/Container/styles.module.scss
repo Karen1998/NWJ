@@ -1,0 +1,19 @@
+.root {
+  padding: 0 24px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 16px;
+    max-width: 992px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 1248px;
+  }
+}

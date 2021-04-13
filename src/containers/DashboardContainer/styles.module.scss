@@ -1,0 +1,53 @@
+.navPanelRoot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 80px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 64px;
+  }
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+    margin-left: 10px;
+  }
+}
+
+.filter {
+  margin-right: 35px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.cardsContainer {
+  margin-top: 42px;
+
+
+  @media (min-width: 1024px) {
+    margin-top: 72px;
+  }
+}
+
+.cardWrapper {
+  margin-bottom: 60px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 1024px) {
+    margin-bottom: 64px;
+  }
+}
