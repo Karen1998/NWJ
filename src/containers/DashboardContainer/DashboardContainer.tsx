@@ -1,16 +1,16 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux';
-import Card from 'src/components/Card';
 
+import Card from 'src/components/Card';
 import Filter from 'src/components/Filter';
 import Heading from 'src/components/Heading'
 import { getMainData } from 'src/redux/Slices/mainSlice';
-
+import { randomDate } from 'src/utils/randomDate';
 import Image1 from 'src/assets/dev/dev1.png';
 import Image2 from 'src/assets/dev/dev2.png';
 
 import styles from './styles.module.scss';
-import { randomDate } from 'src/utils/randomDate';
+import ColoredScrollbars from 'src/utils/scrollBar';
 
 
 interface Category {
@@ -25,7 +25,6 @@ interface INavigationPanelProps {
 const NavigationPanel: FunctionComponent<INavigationPanelProps> = ({ onFilterChange }) => {
   const { categories } = useSelector(getMainData);
   const [activeCourse, setActiveCourse] = useState<Category>(categories[0]);
-
 
   return (
     <div className={styles.navPanelRoot}>
@@ -49,7 +48,6 @@ const NavigationPanel: FunctionComponent<INavigationPanelProps> = ({ onFilterCha
           </div>
         ))}
       </div>
-
     </div>
   )
 }
@@ -67,6 +65,8 @@ type Course = {
 const DashboardContainer: FunctionComponent = () => {
   const { blocks, views } = useSelector(getMainData);
   const [coursers, setCoursers] = useState<Course[]>([]);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const contentStyles = useRef<any>(null);
 
   const sortCardsByViews = (array: Course[]) => {
     let sortedArray = [...array];
@@ -101,6 +101,12 @@ const DashboardContainer: FunctionComponent = () => {
     sortCardsByViews(changedArray);
   }, [blocks, views]);
 
+  useEffect(() => {
+    contentStyles.current = {
+      height: `calc(100vh - ${contentRef.current?.getBoundingClientRect().top}px)`
+    }
+  }, [])
+
 
   return (
     <div>
@@ -114,19 +120,32 @@ const DashboardContainer: FunctionComponent = () => {
         }}
       />
 
-      <div className={styles.cardsContainer}>
-        {coursers.map((obj) => (
-          <div
-            key={obj.name + obj.createdAt}
-            className={styles.cardWrapper}
-          >
-            <Card
-              {...obj}
-            />
-          </div>
-        ))}
+      <div
+        className={styles.cardsContainer}
+        ref={contentRef}
+        style={{
+          height: contentStyles.current?.height,
+        }}
+      >
+        <div
+          className={styles.cardsContainerInner}
+          style={{
+            overflowY: 'auto',
+            height: contentStyles.current?.height
+          }}
+        >
+          {coursers.map((obj: Course) => (
+            <div
+              key={obj.name + obj.createdAt}
+              className={styles.cardWrapper}
+            >
+              <Card
+                {...obj}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-
     </div>
   )
 }

@@ -34,9 +34,17 @@
 .cardsContainer {
   margin-top: 42px;
 
-
   @media (min-width: 1024px) {
     margin-top: 72px;
+  }
+}
+
+.cardsContainerInner {
+  margin-right: -24px;
+
+  @media (min-width: 1024px) {
+    margin-right: -16px;
+    padding-right: 76px;
   }
 }
 
